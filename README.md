@@ -1,15 +1,18 @@
 # Web
+---
 
-Pre-requisite ??? 
-React version ???
-Node version ???
-How to build and  run react app ??
+- Pre-requisite ??? 
+- React version ???
+- Node version ???
+- How to build and  run react app ??
 
 # Server
+---
 
-.Net version ???
-How to build and run the api ???
+- .Net version ???
+- How to build and run the api ???
 
 # Database
+---
 
-Any sample scripts ???
+- Any sample scripts ???
