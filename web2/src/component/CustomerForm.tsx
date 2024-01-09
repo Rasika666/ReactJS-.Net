@@ -1,20 +1,56 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Row, Col, Form, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
+import { Department } from '../model/Model';
+
+enum FormAction {
+    EDIT,
+    SAVE
+}
+
+const DepartmentForm: FC<{ action: FormAction, departmentDate?: Department }> = ({ action, departmentDate }) => {
+    const [departmentCode, setDepartmentCode] = useState<string>('')
+    const [departmentName, setDepartmentName] = useState<string>('')
+    const navigate = useNavigate();
 
 
-const DepartmentForm: FC = () => {
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        if (action === FormAction.SAVE) {
+            // need to trigger POST API request
+        } else if (action === FormAction.EDIT) {
+            // need to trigger PUT API request
+        } else {
+            throw Error("unknown action")
+        }
+        // wait till success response come
+        navigate('/departments')
+      };
+
+
+    useEffect(() => {
+        if (action === FormAction.EDIT && !!departmentDate) {
+            setDepartmentCode(departmentDate.code);
+            setDepartmentName(departmentDate.name);
+        }
+    }, [])
+
+
+
     return (
         <Row>
             <Col md={6}>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
                         <Form.Label>Department Code</Form.Label>
-                        <Form.Control type="text" placeholder="Department code" />
+                        <Form.Control type="text" placeholder="Department code" onChange={e => setDepartmentCode(e.target.value)} value={departmentCode} required/>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Department Name</Form.Label>
-                        <Form.Control type="text" placeholder="Department Name" />
+                        <Form.Control type="text" placeholder="Department Name" onChange={e => setDepartmentName(e.target.value)} value={departmentName} required/>
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit
@@ -88,4 +124,4 @@ const EmployeeForm: FC = () => {
     )
 }
 
-export { DepartmentForm, EmployeeForm }
+export { DepartmentForm, EmployeeForm, FormAction }
