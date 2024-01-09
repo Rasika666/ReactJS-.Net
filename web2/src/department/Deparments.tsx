@@ -21,11 +21,7 @@ function Deparments() {
       }, [])
 
     return (
-        <p>
              <CustomTable props={{department: department}}/>   
-             
-        </p>
-        
     )
 }
 
