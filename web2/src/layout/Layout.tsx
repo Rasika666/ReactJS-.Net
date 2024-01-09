@@ -7,7 +7,7 @@ const Layout = (Component: FC) => ({ ...props }) => (
         <Container fluid className="mt-5">
             <Row>
                 <Col md={2} ><SideBar/></Col>
-                <Col md={8}>
+                <Col md={9}>
                     <Component {...props} />
 
                 </Col>
