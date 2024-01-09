@@ -9,7 +9,7 @@
 # Server
 ---
 
-- .Net version ???
+- .Net version 6.0
 - How to build and run the api ???
 
 # Database
