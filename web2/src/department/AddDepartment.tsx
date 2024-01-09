@@ -5,7 +5,7 @@ import { DepartmentForm, FormAction } from '../component/CustomerForm';
 
 function AddDepartment() {
   return (
-    <DepartmentForm action={FormAction.Save} />
+    <DepartmentForm action={FormAction.SAVE}/>
   )
 }
 

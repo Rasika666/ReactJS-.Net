@@ -1,20 +1,111 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Row, Col, Form, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
+import { Department } from '../model/Model';
+
+enum FormAction {
+    EDIT,
+    SAVE
+}
+
+interface SaveEmployee {
+    DepartmentCode: string,
+    DepartmentName: string
+}
+
+interface UpdateEmployee extends SaveEmployee {
+    DepartmentId: number,
+}
+
+const DepartmentForm: FC<{ action: FormAction, departmentDate?: Department }> = ({ action, departmentDate }) => {
+    const [departmentCode, setDepartmentCode] = useState<string>('')
+    const [departmentName, setDepartmentName] = useState<string>('')
+    const navigate = useNavigate();
 
 
-const DepartmentForm: FC = () => {
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        let data: Promise<Response>;
+        try {
+            if (action === FormAction.SAVE) {
+                data = sendRequest(createDepatement())
+            } else if (action === FormAction.EDIT && !!departmentDate) {
+                data = sendRequest(updateDepatement(departmentDate))
+            } else {
+                throw Error("unknown action")
+            }
+            data.then(result => {
+                navigate('/departments')
+            }).catch(err => {
+                console.error((err as Error).message);  
+            })
+            
+        } catch (e: any) {
+            console.error('Error:', e.message);
+        }
+    };
+
+
+    const sendRequest = async (params: SaveEmployee): Promise<Response> => {
+        const response = await fetch('https://localhost:7092/CreateDepartment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response;
+
+    }
+
+
+    const createDepatement = (): SaveEmployee => {
+        const newDepartment = {
+            DepartmentCode: departmentCode,
+            DepartmentName: departmentName
+        }
+
+        return newDepartment;
+    }
+
+    const updateDepatement = (departmentDate: Department) => {
+        const updateEmployee = {
+            DepartmentId: departmentDate.id,
+            DepartmentCode: departmentCode,
+            DepartmentName: departmentName
+        }
+
+        return updateEmployee;
+    }
+
+
+    useEffect(() => {
+        if (action === FormAction.EDIT && !!departmentDate) {
+            setDepartmentCode(departmentDate.code);
+            setDepartmentName(departmentDate.name);
+        }
+    }, [])
+
+
+
     return (
         <Row>
             <Col md={6}>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
                         <Form.Label>Department Code</Form.Label>
-                        <Form.Control type="text" placeholder="Department code" />
+                        <Form.Control type="text" placeholder="Department code" onChange={e => setDepartmentCode(e.target.value)} value={departmentCode} required />
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Department Name</Form.Label>
-                        <Form.Control type="text" placeholder="Department Name" />
+                        <Form.Control type="text" placeholder="Department Name" onChange={e => setDepartmentName(e.target.value)} value={departmentName} required />
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit
@@ -83,4 +174,4 @@ const EmployeeForm: FC = () => {
     )
 }
 
-export { DepartmentForm, EmployeeForm }
+export { DepartmentForm, EmployeeForm, FormAction }

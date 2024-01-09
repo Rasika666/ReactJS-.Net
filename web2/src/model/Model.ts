@@ -1,15 +1,15 @@
 export class Department {
     id: Number;
-    code: String;
-    name: String;
+    code: string;
+    name: string;
 
-    constructor(id: Number, code: String, name: String) {
+    constructor(id: Number, code: string, name: string) {
         this.id = id;
         this.code = code;
         this.name = name;
     }
 
-    static createDepartment(code: String, name: String): Department {
+    static createDepartment(code: string, name: string): Department {
         return new Department(-1, code, name);
     }
 

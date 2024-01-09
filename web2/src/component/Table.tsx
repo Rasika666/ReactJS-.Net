@@ -85,7 +85,7 @@ const Operation: FC<{id: Number}> = ({id}) => (
                 <Link to={`/department/${id}`}><i className="fa fa-eye"></i></Link>
             </div>
             <div>
-                <Button variant="warning"><i className="fa fa-pencil-square-o"></i></Button>
+                <Link to={`/department/edit/${id}`}><i className="fa fa-pencil-square-o"></i></Link>
             </div>
             <div>
                 <Button variant="danger"><i className="fa fa-close"></i></Button>
