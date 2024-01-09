@@ -1,6 +1,7 @@
 import React from 'react'
 
 function EditDepartment() {
+
   return (
     <div>EditDepartment</div>
   )
