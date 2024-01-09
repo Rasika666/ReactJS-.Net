@@ -57,11 +57,6 @@ const EmployeeForm: FC = () => {
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>Age</Form.Label>
-                        <Form.Control type="number" placeholder="age" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
                         <Form.Label>Salary</Form.Label>
                         <Form.Control type="number" placeholder="salary" />
                     </Form.Group>
