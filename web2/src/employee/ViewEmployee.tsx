@@ -16,7 +16,7 @@ const ViewEmployee: FC = () => {
     const initEmployees = (): Employee[] => [new Employee(1, 'Kushan', 'Eman', 'eman@gmail.com', new Date("2019-01-16"), 20, 100000, new Department(22, 'Dep00001', 'finance'))];
 
     useEffect(() => {
-        const employeeFound = initEmployees().find(emp => emp.id == Number(employeeId))
+        const employeeFound = initEmployees().find(emp => emp.id === Number(employeeId))
         if(employeeFound) {
             setEmployee(employeeFound)
         }else {
@@ -43,7 +43,7 @@ const View: FC<{ employeeProps: EmployeeProps }> = ({ employeeProps }) => {
                     <ListGroup.Item>Employee Date of Birth: {employeeProps.employee.dob.toString()}</ListGroup.Item>
                     <ListGroup.Item>Employee Age: {employeeProps.employee.age?.toString()}</ListGroup.Item>
                     <ListGroup.Item>Employee Salary: {employeeProps.employee.salary.toString()}</ListGroup.Item>
-                    <ListGroup.Item>Employee Department: {employeeProps.employee.department.toString()}</ListGroup.Item>
+                    <ListGroup.Item>Employee Department: {employeeProps.employee.department.name}</ListGroup.Item>
                 </ListGroup>
 
             </Card.Body>
