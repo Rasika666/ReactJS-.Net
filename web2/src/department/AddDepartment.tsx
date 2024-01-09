@@ -1,11 +1,11 @@
 import React from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import Layout from '../layout/Layout';
-import { DepartmentForm } from '../component/CustomerForm';
+import { DepartmentForm, FormAction } from '../component/CustomerForm';
 
 function AddDepartment() {
   return (
-    <DepartmentForm />
+    <DepartmentForm action={FormAction.SAVE}/>
   )
 }
 
