@@ -2,6 +2,7 @@
 import React, { FC } from 'react'
 import { Button, Col, Row, Table } from 'react-bootstrap';
 import { Department, Employee } from '../model/Model';
+import { Link } from 'react-router-dom';
 
 
 interface TableProps {
@@ -77,11 +78,11 @@ const EmployeeData: FC<{ employee?: Employee }> = ({ employee }) => (
     </>
 )
 
-const Operation: FC = () => (
+const Operation: FC<{id: Number}> = ({id}) => (
     <th>
         <div className='d-flex justify-content-around'>
             <div>
-                <Button variant="info"><i className="fa fa-eye"></i></Button>
+                <Link to={`/department/${id}`}><i className="fa fa-eye"></i></Link>
             </div>
             <div>
                 <Button variant="warning"><i className="fa fa-pencil-square-o"></i></Button>
@@ -108,21 +109,21 @@ const CustomTable: FC<{ props: TableProps }> = ({ props }) => {
             <tbody>
                 {
                     !!department && department.map(dep => (
-                        <tr>
+                        <tr key={dep.id.toString()}>  
                             <DepartmentData department={dep} />
-                            <Operation />
+                            <Operation id={dep.id}/>
                         </tr>
                     ))
                 }
 
-{
+                {
                     !!employee && employee.map(emp => (
-                        <tr>
+                        <tr key={emp.id.toString()}>
                             <EmployeeData employee={emp} />
-                            <Operation />
+                            <Operation id={emp.id}/>
                         </tr>
                     ))
-                }   
+                }
             </tbody>
         </Table>
     )

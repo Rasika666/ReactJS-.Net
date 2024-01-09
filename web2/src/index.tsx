@@ -12,6 +12,8 @@ import App from './App';
 import AddDepartment from './department/AddDepartment';
 import Employees from './employee/Employees';
 import AddEmpoyee from './employee/AddEmpoyee';
+import ViewDepartment from './department/ViewDepartment';
+import EditDepartment from './department/EditDepartment';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
   {
     path: "department/add",
     element: <AddDepartment />,
+  },
+  {
+    path: "department/:departmentId",
+    element: <ViewDepartment />,
+  },
+  {
+    path: "department/edit/:departmentId",
+    element: <EditDepartment />,
   },
   {
     path: "employees",
