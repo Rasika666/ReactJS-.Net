@@ -7,7 +7,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Deparments from './department/Deparments';
 import App from './App';
 import AddDepartment from './department/AddDepartment';
 import Employees from './employee/Employees';
@@ -16,6 +15,7 @@ import ViewDepartment from './department/ViewDepartment';
 import EditDepartment from './department/EditDepartment';
 import ViewEmployee from './employee/ViewEmployee';
 import EditEmployee from './employee/EditEmployee';
+import Departments from "./department/Departments";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "departments",
-    element: <Deparments />,
+    element: <Departments />,
   },
   {
     path: "department/add",
