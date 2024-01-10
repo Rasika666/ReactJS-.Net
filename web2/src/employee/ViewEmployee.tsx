@@ -40,7 +40,7 @@ const View: FC<{ employeeProps: EmployeeProps }> = ({ employeeProps }) => {
                     <ListGroup.Item>Employee First Name: {employeeProps.employee.firstName}</ListGroup.Item>
                     <ListGroup.Item>Employee Last Name: {employeeProps.employee.lastName}</ListGroup.Item>
                     <ListGroup.Item>Employee Email: {employeeProps.employee.email}</ListGroup.Item>
-                    <ListGroup.Item>Employee Date of Birth: {employeeProps.employee.dob.toString()}</ListGroup.Item>
+                    <ListGroup.Item>Employee Date of Birth: {employeeProps.employee.dob.toDateString()}</ListGroup.Item>
                     <ListGroup.Item>Employee Age: {employeeProps.employee.age?.toString()}</ListGroup.Item>
                     <ListGroup.Item>Employee Salary: {employeeProps.employee.salary.toString()}</ListGroup.Item>
                     <ListGroup.Item>Employee Department: {employeeProps.employee.department.name}</ListGroup.Item>
