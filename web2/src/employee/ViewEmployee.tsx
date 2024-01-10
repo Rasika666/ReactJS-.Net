@@ -36,7 +36,7 @@ const View: FC<{ employeeProps: EmployeeProps }> = ({ employeeProps }) => {
                 <Card.Title>{employeeProps.employee.firstName} {employeeProps.employee.lastName}</Card.Title>
 
                 <ListGroup>
-                    <ListGroup.Item>Employee Id: {employeeProps.employee.id.toString()}</ListGroup.Item>
+                    <ListGroup.Item>Employee Id: {employeeProps.employee.id?.toString()}</ListGroup.Item>
                     <ListGroup.Item>Employee First Name: {employeeProps.employee.firstName}</ListGroup.Item>
                     <ListGroup.Item>Employee Last Name: {employeeProps.employee.lastName}</ListGroup.Item>
                     <ListGroup.Item>Employee Email: {employeeProps.employee.email}</ListGroup.Item>
