@@ -1,9 +1,9 @@
 export class Department {
-    id: Number;
+    id: number;
     code: string;
     name: string;
 
-    constructor(id: Number, code: string, name: string) {
+    constructor(id: number, code: string, name: string) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -17,15 +17,15 @@ export class Department {
 
 export class Employee {
     id: Number;
-    firstName: String;
-    lastName: String;
-    email: String;
+    firstName: string;
+    lastName: string;
+    email: string;
     dob: Date;
     age: Number | undefined;
     salary: Number;
     department: Department;
 
-    constructor(id: Number, firstName: String, lastName: String, email: String, dob: Date, age: Number | undefined, salary: Number, department: Department) {
+    constructor(id: Number, firstName: string, lastName: string, email: string, dob: Date, age: Number | undefined, salary: Number, department: Department) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,7 +36,7 @@ export class Employee {
         this.department = department;
     }
 
-    static createEmployee(firstName: String, lastName: String, email: String, dob: Date, salary: Number, department: Department): Employee {
+    static createEmployee(firstName: string, lastName: string, email: string, dob: Date, salary: Number, department: Department): Employee {
         return new Employee(-1, firstName, lastName, email, dob, undefined, salary, department);
     }
 

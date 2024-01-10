@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useState } from 'react'
-import { Row, Col, Form, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom';
-import { Department, Employee } from '../model/Model';
+import React, {FC, useEffect, useState} from 'react'
+import {Row, Col, Form, Button} from 'react-bootstrap'
+import {useNavigate} from 'react-router-dom';
+import {Department, Employee} from '../model/Model';
 
 enum FormAction {
     EDIT,
@@ -13,15 +13,14 @@ interface SaveDepartment {
     DepartmentName: string
 }
 
-interface updateDepatement extends SaveDepartment{
+interface UpdateDepartment extends SaveDepartment {
     DepartmentId: number,
 }
 
-const DepartmentForm: FC<{ action: FormAction, departmentDate?: Department }> = ({ action, departmentDate }) => {
+const DepartmentForm: FC<{ action: FormAction, departmentDate?: Department }> = ({action, departmentDate}) => {
     const [departmentCode, setDepartmentCode] = useState<string>('')
     const [departmentName, setDepartmentName] = useState<string>('')
     const navigate = useNavigate();
-
 
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,18 +29,18 @@ const DepartmentForm: FC<{ action: FormAction, departmentDate?: Department }> = 
         let data: Promise<Response>;
         try {
             if (action === FormAction.SAVE) {
-                data = sendRequest(createDepatement())
+                data = sendRequest(createDepartement())
             } else if (action === FormAction.EDIT && !!departmentDate) {
-                data = sendRequest(updateDepatement(departmentDate))
+                data = sendRequest(updateDepartement(departmentDate))
             } else {
                 throw Error("unknown action")
             }
             data.then(result => {
                 navigate('/departments')
             }).catch(err => {
-                console.error((err as Error).message);  
+                console.error((err as Error).message);
             })
-            
+
         } catch (e: any) {
             console.error('Error:', e.message);
         }
@@ -65,7 +64,7 @@ const DepartmentForm: FC<{ action: FormAction, departmentDate?: Department }> = 
     }
 
 
-    const createDepatement = (): SaveDepartment => {
+    const createDepartement = (): SaveDepartment => {
         const newDepartment = {
             DepartmentCode: departmentCode,
             DepartmentName: departmentName
@@ -74,14 +73,14 @@ const DepartmentForm: FC<{ action: FormAction, departmentDate?: Department }> = 
         return newDepartment;
     }
 
-    const updateDepatement = (departmentDate: Department) => {
-        const updateDepatementData = {
+    const updateDepartement = (departmentDate: Department): UpdateDepartment => {
+        const updateDepartementData = {
             DepartmentId: departmentDate.id,
             DepartmentCode: departmentCode,
             DepartmentName: departmentName
         }
 
-        return updateDepatementData;
+        return updateDepartementData;
     }
 
 
@@ -99,15 +98,19 @@ const DepartmentForm: FC<{ action: FormAction, departmentDate?: Department }> = 
             <Row>
                 <Col className='text-center' md={15}>
                     <h2 className="mb-3">{formTitle} Deparment Details</h2>
-                    <Form onSubmit={handleSubmit} >
+                    <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3">
                             <Form.Label>Department Code</Form.Label>
-                            <Form.Control type="text" placeholder="Department code" onChange={e => setDepartmentCode(e.target.value)} value={departmentCode} required />
+                            <Form.Control type="text" placeholder="Department code"
+                                          onChange={e => setDepartmentCode(e.target.value)} value={departmentCode}
+                                          required/>
                         </Form.Group>
 
                         <Form.Group className="mb-3">
                             <Form.Label>Department Name</Form.Label>
-                            <Form.Control type="text" placeholder="Department Name" onChange={e => setDepartmentName(e.target.value)} value={departmentName} required />
+                            <Form.Control type="text" placeholder="Department Name"
+                                          onChange={e => setDepartmentName(e.target.value)} value={departmentName}
+                                          required/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             Submit
@@ -129,17 +132,17 @@ interface SaveEmployee {
 
 }
 
-interface updateEmployee extends SaveEmployee{
+interface updateEmployee extends SaveEmployee {
     EmployeeId: number,
 }
 
-const EmployeeForm: FC<{ action: FormAction, employeeDate?: Employee }>  = ({ action, employeeDate}) => {
+const EmployeeForm: FC<{ action: FormAction, employeeDate?: Employee }> = ({action, employeeDate}) => {
     const [employeeFirstName, setEmployeeFirstName] = useState<string>('')
     const [employeeLastName, setEmployeeLastName] = useState<string>('')
-    const [employeeEmail, setEmployeeEmail] =useState<string>('')
-    const [employeeDOB, setEmployeeDOB] =useState<Date | undefined>()
-    const [employeeSalary, setEmployeeSalary] =useState<Number| undefined>()
-    const [employeeDepartment, setEmployeeDepartment] =useState<string>('')
+    const [employeeEmail, setEmployeeEmail] = useState<string>('')
+    const [employeeDOB, setEmployeeDOB] = useState<Date | undefined>()
+    const [employeeSalary, setEmployeeSalary] = useState<Number | undefined>()
+    const [employeeDepartment, setEmployeeDepartment] = useState<string>('')
     const navigate = useNavigate();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -157,9 +160,9 @@ const EmployeeForm: FC<{ action: FormAction, employeeDate?: Employee }>  = ({ ac
             data.then(result => {
                 navigate('/employees')
             }).catch(err => {
-                console.error((err as Error).message);  
+                console.error((err as Error).message);
             })
-            
+
         } catch (e: any) {
             console.error('Error:', e.message);
         }
@@ -224,56 +227,67 @@ const EmployeeForm: FC<{ action: FormAction, employeeDate?: Employee }>  = ({ ac
 
     return (
         <div className="d-flex justify-content-center ">
-            
-        <Row>
-            <Col className='text-center' md={15}>
-                <h2 className="mb-3">{formTitle} Employee Details</h2>
-                <Form>
-                    <Form.Group className="mb-3">
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control type="text" placeholder="First Name" onChange={e => setEmployeeFirstName(e.target.value)} value={employeeFirstName} required/>
-                    </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Last Name</Form.Label>
-                        <Form.Control type="text" placeholder="Last Name" onChange={e => setEmployeeLastName(e.target.value)} value={employeeLastName} required/>
-                    </Form.Group>
+            <Row>
+                <Col className='text-center' md={15}>
+                    <h2 className="mb-3">{formTitle} Employee Details</h2>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control type="text" placeholder="First Name"
+                                          onChange={e => setEmployeeFirstName(e.target.value)} value={employeeFirstName}
+                                          required/>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Email" onChange={e => setEmployeeEmail(e.target.value)} value={employeeEmail} required/>
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control type="text" placeholder="Last Name"
+                                          onChange={e => setEmployeeLastName(e.target.value)} value={employeeLastName}
+                                          required/>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Date of Birth</Form.Label>
-                        <Form.Control type="date" placeholder="dob" onChange={e => setEmployeeDOB(new Date(e.target.value))} value={employeeDOB?.toISOString().split('T')[0]} required/>
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="email" placeholder="Email"
+                                          onChange={e => setEmployeeEmail(e.target.value)} value={employeeEmail}
+                                          required/>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Salary</Form.Label>
-                        <Form.Control type="number" placeholder="salary" onChange={e => setEmployeeSalary(Number(e.target.value))} value={employeeSalary?.toString()} required/>
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Date of Birth</Form.Label>
+                            <Form.Control type="date" placeholder="dob"
+                                          onChange={e => setEmployeeDOB(new Date(e.target.value))}
+                                          value={employeeDOB?.toISOString().split('T')[0]} required/>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Department</Form.Label>
-                        <Form.Select aria-label="Default select example" onChange={e => setEmployeeDepartment(e.target.value)} value={employeeDepartment} required>
-                            <option>Department</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </Form.Select>
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Salary</Form.Label>
+                            <Form.Control type="number" placeholder="salary"
+                                          onChange={e => setEmployeeSalary(Number(e.target.value))}
+                                          value={employeeSalary?.toString()} required/>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Department</Form.Label>
+                            <Form.Select aria-label="Default select example"
+                                         onChange={e => setEmployeeDepartment(e.target.value)}
+                                         value={employeeDepartment} required>
+                                <option>Department</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </Form.Select>
+                        </Form.Group>
 
 
-
-                    <Button variant="primary" type="submit" className="mb-3">
-                        Submit
-                    </Button>
-                </Form>
-            </Col>
-        </Row>
+                        <Button variant="primary" type="submit" className="mb-3">
+                            Submit
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
         </div>
     )
 }
 
-export { DepartmentForm, EmployeeForm, FormAction }
+export {DepartmentForm, EmployeeForm, FormAction}
