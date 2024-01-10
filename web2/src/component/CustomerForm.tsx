@@ -139,17 +139,7 @@ const EmployeeForm: FC = () => {
 
                     <Form.Group className="mb-3">
                         <Form.Label>Date of Birth</Form.Label>
-                        <Form.Control type="email" placeholder="dob" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                        <Form.Label>Date of Birth</Form.Label>
                         <Form.Control type="date" placeholder="dob" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                        <Form.Label>Age</Form.Label>
-                        <Form.Control type="number" placeholder="age" />
                     </Form.Group>
 
                     <Form.Group className="mb-3">

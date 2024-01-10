@@ -78,14 +78,14 @@ const EmployeeData: FC<{ employee?: Employee }> = ({ employee }) => (
     </>
 )
 
-const Operation: FC<{id: Number}> = ({id}) => (
+const Operation: FC<{id: Number, type: string}> = ({id, type}) => (
     <th>
         <div className='d-flex justify-content-around'>
             <div>
-                <Link to={`/department/${id}`}><i className="fa fa-eye"></i></Link>
+                <Link to={`/${type}/${id}`}><i className="fa fa-eye"></i></Link>
             </div>
             <div>
-                <Link to={`/department/edit/${id}`}><i className="fa fa-pencil-square-o"></i></Link>
+                <Link to={`/${type}/edit/${id}`}><i className="fa fa-pencil-square-o"></i></Link>
             </div>
             <div>
                 <Button variant="danger"><i className="fa fa-close"></i></Button>
@@ -111,7 +111,7 @@ const CustomTable: FC<{ props: TableProps }> = ({ props }) => {
                     !!department && department.map(dep => (
                         <tr key={dep.id.toString()}>  
                             <DepartmentData department={dep} />
-                            <Operation id={dep.id}/>
+                            <Operation id={dep.id} type= 'department'/>
                         </tr>
                     ))
                 }
@@ -120,7 +120,7 @@ const CustomTable: FC<{ props: TableProps }> = ({ props }) => {
                     !!employee && employee.map(emp => (
                         <tr key={emp.id.toString()}>
                             <EmployeeData employee={emp} />
-                            <Operation id={emp.id}/>
+                            <Operation id={emp.id} type='employee'/>
                         </tr>
                     ))
                 }

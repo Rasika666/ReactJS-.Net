@@ -18,7 +18,7 @@ const ViewDepartment: FC = () => {
 
 
     useEffect(() => {
-        const departmentFound = initDepartments().find(dep => dep.id == Number(departmentId))
+        const departmentFound = initDepartments().find(dep => dep.id === Number(departmentId))
         if (departmentFound) {
             setDepartment(departmentFound)
         } else {
