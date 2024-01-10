@@ -5,7 +5,7 @@ import { Department, Employee } from '../model/Model';
 
 enum FormAction {
     EDIT,
-    SAVE
+    SAVE,
 }
 
 interface SaveDepartment {
@@ -92,27 +92,30 @@ const DepartmentForm: FC<{ action: FormAction, departmentDate?: Department }> = 
         }
     }, [])
 
-
+    const formTitle = action === FormAction.EDIT ? 'Edit' : 'Add';
 
     return (
-        <Row>
-            <Col md={6}>
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Department Code</Form.Label>
-                        <Form.Control type="text" placeholder="Department code" onChange={e => setDepartmentCode(e.target.value)} value={departmentCode} required />
-                    </Form.Group>
+        <div className="d-flex justify-content-center ">
+            <Row>
+                <Col className='text-center' md={15}>
+                    <h2 className="mb-3">{formTitle} Deparment Details</h2>
+                    <Form onSubmit={handleSubmit} >
+                        <Form.Group className="mb-3">
+                            <Form.Label>Department Code</Form.Label>
+                            <Form.Control type="text" placeholder="Department code" onChange={e => setDepartmentCode(e.target.value)} value={departmentCode} required />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Department Name</Form.Label>
-                        <Form.Control type="text" placeholder="Department Name" onChange={e => setDepartmentName(e.target.value)} value={departmentName} required />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>
-            </Col>
-        </Row>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Department Name</Form.Label>
+                            <Form.Control type="text" placeholder="Department Name" onChange={e => setDepartmentName(e.target.value)} value={departmentName} required />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
+        </div>
     )
 }
 
@@ -217,10 +220,14 @@ const EmployeeForm: FC<{ action: FormAction, employeeDate?: Employee }>  = ({ ac
         }
     }, [])
 
+    const formTitle = action === FormAction.EDIT ? 'Edit' : 'Add';
 
     return (
+        <div className="d-flex justify-content-center ">
+            
         <Row>
-            <Col md={6}>
+            <Col className='text-center' md={15}>
+                <h2 className="mb-3">{formTitle} Employee Details</h2>
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>First Name</Form.Label>
@@ -265,7 +272,7 @@ const EmployeeForm: FC<{ action: FormAction, employeeDate?: Employee }>  = ({ ac
                 </Form>
             </Col>
         </Row>
-
+        </div>
     )
 }
 

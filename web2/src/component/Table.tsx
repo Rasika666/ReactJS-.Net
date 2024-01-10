@@ -16,9 +16,9 @@ const DepartmentHeader: FC<{ showDepartmentHeader: Boolean }> = ({ showDepartmen
     <>
         {showDepartmentHeader && (
             <>
-                <th>department id</th>
-                <th>department code</th>
-                <th>department name</th>
+                <th>Department Id</th>
+                <th>Department Code</th>
+                <th>Department Name</th>
             </>
 
         )}
@@ -31,14 +31,14 @@ const EmployeeHeader: FC<{ showEmployeeHeader: Boolean }> = ({ showEmployeeHeade
     <>
         {showEmployeeHeader && (
             <>
-                <th>employee id</th>
-                <th>first name</th>
-                <th>last name</th>
-                <th>email</th>
-                <th>dob</th>
-                <th>age</th>
-                <th>salary</th>
-                <th>department</th>
+                <th>Employee Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email Address</th>
+                <th>Date of birth</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Department</th>
             </>
 
         )}
@@ -97,13 +97,18 @@ const Operation: FC<{id: Number, type: string}> = ({id, type}) => (
 
 const CustomTable: FC<{ props: TableProps }> = ({ props }) => {
     const { department, employee } = props;
+    const isDepartment = !!department;
+    
+
     return (
-        <Table striped bordered hover>
+        <div>
+            <h2 className='text-center mb-3'> {isDepartment ? 'Department' : 'Employee'} Details </h2>
+        <Table striped bordered hover >
             <thead>
                 <tr>
                     <DepartmentHeader showDepartmentHeader={!!department} />
                     <EmployeeHeader showEmployeeHeader={!!employee} />
-                    <th>opertions</th>
+                    <th>Option</th>
                 </tr>
             </thead>
             <tbody>
@@ -126,6 +131,7 @@ const CustomTable: FC<{ props: TableProps }> = ({ props }) => {
                 }
             </tbody>
         </Table>
+        </div>
     )
 };
 

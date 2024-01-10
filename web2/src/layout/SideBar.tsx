@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 function SideBar() {
     return (
         <Sidebar>
+        <h3 className='text-center' >Menu</h3>
             <Menu>
                 <SubMenu label="Department">
                     <MenuItem component={<Link to="/departments" />}> View Departments </MenuItem>
