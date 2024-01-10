@@ -31,23 +31,25 @@ const ViewEmployee: FC = () => {
 
 const View: FC<{ employeeProps: EmployeeProps }> = ({ employeeProps }) => {
     return(
-        <Card style={{ width: '50rem'}}>
-            <Card.Body>
-                <Card.Title>{employeeProps.employee.firstName} {employeeProps.employee.lastName}</Card.Title>
+        <div className="d-flex justify-content-center ">
+            <Card style={{ width: '35rem'}}>
+                <Card.Body>
+                    <Card.Title className='text-center'>{employeeProps.employee.firstName} {employeeProps.employee.lastName}</Card.Title>
 
-                <ListGroup>
-                    <ListGroup.Item>Employee Id: {employeeProps.employee.id.toString()}</ListGroup.Item>
-                    <ListGroup.Item>Employee First Name: {employeeProps.employee.firstName}</ListGroup.Item>
-                    <ListGroup.Item>Employee Last Name: {employeeProps.employee.lastName}</ListGroup.Item>
-                    <ListGroup.Item>Employee Email: {employeeProps.employee.email}</ListGroup.Item>
-                    <ListGroup.Item>Employee Date of Birth: {employeeProps.employee.dob.toDateString()}</ListGroup.Item>
-                    <ListGroup.Item>Employee Age: {employeeProps.employee.age?.toString()}</ListGroup.Item>
-                    <ListGroup.Item>Employee Salary: {employeeProps.employee.salary.toString()}</ListGroup.Item>
-                    <ListGroup.Item>Employee Department: {employeeProps.employee.department.name}</ListGroup.Item>
-                </ListGroup>
+                    <ListGroup>
+                        <ListGroup.Item>Employee Id: {employeeProps.employee.id?.toString()}</ListGroup.Item>
+                        <ListGroup.Item>Employee First Name: {employeeProps.employee.firstName}</ListGroup.Item>
+                        <ListGroup.Item>Employee Last Name: {employeeProps.employee.lastName}</ListGroup.Item>
+                        <ListGroup.Item>Employee Email: {employeeProps.employee.email}</ListGroup.Item>
+                        <ListGroup.Item>Employee Date of Birth: {employeeProps.employee.dob.toDateString()}</ListGroup.Item>
+                        <ListGroup.Item>Employee Age: {employeeProps.employee.age?.toString()}</ListGroup.Item>
+                        <ListGroup.Item>Employee Salary: {employeeProps.employee.salary.toString()}</ListGroup.Item>
+                        <ListGroup.Item>Employee Department: {employeeProps.employee.department.name}</ListGroup.Item>
+                    </ListGroup>
 
-            </Card.Body>
-        </Card>
+                </Card.Body>
+            </Card>
+        </div>
     )
 }
 

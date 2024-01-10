@@ -15,7 +15,7 @@ function EditEmployee() {
     },[])
 
     return (
-        <EmployeeForm action={FormAction.EDIT} EmployeeDate={emp1}/>
+        <EmployeeForm action={FormAction.EDIT} employeeDate={emp1}/>
     )
 }
 

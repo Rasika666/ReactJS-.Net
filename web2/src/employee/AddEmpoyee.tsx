@@ -1,11 +1,11 @@
 import React from 'react'
 import { Form, Button, Col, Row } from 'react-bootstrap'
 import Layout from '../layout/Layout'
-import { EmployeeForm } from '../component/CustomerForm'
+import { EmployeeForm, FormAction } from '../component/CustomerForm'
 
 function AddEmpoyee() {
   return (
-    <EmployeeForm />
+    <EmployeeForm  action={FormAction.SAVE}/>
   )
 }
 

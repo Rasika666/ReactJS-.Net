@@ -37,9 +37,10 @@ const ViewDepartment: FC = () => {
 
 const View: FC<{ departmentProps: DepartmentProps }> = ({ departmentProps }) => {
     return (
-        <Card style={{ width: '50rem' }}>
+        <div className="d-flex justify-content-center ">
+        <Card style={{ width: '35rem' }}>
             <Card.Body>
-                <Card.Title>{departmentProps.department.name} Department</Card.Title>
+                <Card.Title className='text-center'>{departmentProps.department.name} Department</Card.Title>
 
                 <ListGroup>
                     <ListGroup.Item>Department Id: {departmentProps.department.id.toString()}</ListGroup.Item>
@@ -50,7 +51,7 @@ const View: FC<{ departmentProps: DepartmentProps }> = ({ departmentProps }) => 
 
             </Card.Body>
         </Card>
-
+        </div>
     )
 }
 
